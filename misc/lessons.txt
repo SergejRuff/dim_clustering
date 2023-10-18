@@ -53,3 +53,6 @@ the corrected code looks like this:
 titanic_test["Fare"] = titanic_test["Fare"].fillna(titanic_test["Fare"].mean())  # has one NA that needs to be filled.
 
 lesson 5: If you have 6 features, you can perform Principal Component Analysis (PCA) with a maximum of 6 components.
+
+lesson 6: The cluster labels in DBScan can be both positive integers (representing normal clusters) and -1 (representing noise or outliers).
+The cluster label -1 is assigned to data points that are not part of any specific cluster and are considered as noise or outliers.

@@ -128,3 +128,6 @@ plt.show()
 # Print and analyze the results
 for (j, i), accuracy in results.items():
     print("PCA Komponenten: {}, k-NN Nachbarn: {}, Genauigkeit: {:.2f}".format(j, i, accuracy))
+
+
+
