@@ -51,3 +51,5 @@ There should be two spaces between function-end and #
 each comment should have a space after #
 the corrected code looks like this:
 titanic_test["Fare"] = titanic_test["Fare"].fillna(titanic_test["Fare"].mean())  # has one NA that needs to be filled.
+
+lesson 5: If you have 6 features, you can perform Principal Component Analysis (PCA) with a maximum of 6 components.
