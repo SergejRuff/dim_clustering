@@ -2,3 +2,47 @@ lesson 1: churn_df = churn_df.drop("customerID",axis=1)
 after peforming .drop you need to assign it to a new variable.
 Otherwise the changes won´t be saved.
 Also axis= 1 for cloumns, axis =0 for rows.
+
+lesson 2: fillna()
+you must specify a value or method inside the method.
+titanic_test["Age"] = titanic_test["Age"].fillna().mean() doesnt work.
+but titanic_test["Age"] = titanic_test["Age"].fillna(titanic_test["Age"].mean()) does
+error if you try the first one:
+Traceback (most recent call last):
+  File "/home/sergejruff/Desktop/coding/dim_clustering/code/clustering_task.py", line 24, in <module>
+    titanic_train["Age"] = titanic_train["Age"].fillna().mean()
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sergejruff/anaconda3/envs/dim_clustering/lib/python3.11/site-packages/pandas/core/generic.py", line 7156, in fillna
+    value, method = validate_fillna_kwargs(value, method)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sergejruff/anaconda3/envs/dim_clustering/lib/python3.11/site-packages/pandas/util/_validators.py", line 293, in validate_fillna_kwargs
+    raise ValueError("Must specify a fill 'value' or 'method'.")
+ValueError: Must specify a fill 'value' or 'method'.
+
+Lesson 3:
+PEP 8: E303 too many blank lines (3)
+There shouldn´t be to much white space between code-chunks.
+for example. the following code has 3 lines of three space:
+import pandas as pd
+from sklearn.neighbors import KNeighborsClassifier
+
+
+
+titanic_train = pd.read_csv("../data/train.csv")
+
+but there should be only one line of free space:
+from sklearn.neighbors import KNeighborsClassifier
+
+titanic_train = pd.read_csv("../data/train.csv")
+
+
+lesson 4:
+PEP 8: E261 at least two spaces before inline comment
+and
+PEP 8: E262 inline comment should start with '# '
+example:
+titanic_test["Fare"] = titanic_test["Fare"].fillna(titanic_test["Fare"].mean())#has one NA that needs to be filled.
+There should be two spaces between function-end and #
+each comment should have a space after #
+the corrected code looks like this:
+titanic_test["Fare"] = titanic_test["Fare"].fillna(titanic_test["Fare"].mean())  # has one NA that needs to be filled.
