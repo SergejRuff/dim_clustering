@@ -44,6 +44,7 @@ titanic_test["Fare"] = titanic_test["Fare"].fillna(titanic_test["Fare"].mean()) 
 scores = {}  # save scores in empty dictionary
 ypred = {}  # save predictions in emty dictionary
 
+# go throught 50 k-means
 for i in range(1, 51):
     knn_clf = KNeighborsClassifier(n_neighbors=i)
     knn_clf.fit(train_x, train_y)
