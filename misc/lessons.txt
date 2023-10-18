@@ -2,6 +2,11 @@ lesson 1: churn_df = churn_df.drop("customerID",axis=1)
 after peforming .drop you need to assign it to a new variable.
 Otherwise the changes won´t be saved.
 Also axis= 1 for cloumns, axis =0 for rows.
+error if you dont specify the axis:
+  File "/home/sergejruff/anaconda3/envs/dim_clustering/lib/python3.11/site-packages/pandas/core/indexes/base.py", line 6992, in drop
+    raise KeyError(f"{labels[mask].tolist()} not found in axis")
+KeyError: "['PassengerId'] not found in axis"
+code: y_test = y_test.drop("PassengerId")
 
 lesson 2: fillna()
 you must specify a value or method inside the method.
