@@ -1,0 +1,4 @@
+lesson 1: churn_df = churn_df.drop("customerID",axis=1)
+after peforming .drop you need to assign it to a new variable.
+Otherwise the changes won´t be saved.
+Also axis= 1 for cloumns, axis =0 for rows.
