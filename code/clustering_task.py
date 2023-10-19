@@ -8,12 +8,15 @@ import pandas as pd
 from sklearn.neighbors import KNeighborsClassifier
 import matplotlib.pyplot as plt
 from perform_pca import perform_pca
+import os
+
+print(os.getcwd())
 
 pca_option = True
 
-titanic_train = pd.read_csv("data/train.csv")
-titanic_test = pd.read_csv("data/test.csv")
-y_test = pd.read_csv("data/gender_submission.csv")
+titanic_train = pd.read_csv("../data/train.csv")
+titanic_test = pd.read_csv("../data/test.csv")
+y_test = pd.read_csv("../data/gender_submission.csv")
 y_test = y_test.drop("PassengerId", axis=1)
 # filtering train
 
@@ -56,10 +59,10 @@ for i in range(1, 51):
     scores_train[i] = knn_clf.score(train_x, train_y)
     print("k = {}, Test Accuracy: {:.2f}, Training Accuracy: {:.2f}".format(i, scores_test[i], scores_train[i]))
 
-            # Plot the scores in a lineplot
+    # Plot the scores in a lineplot
 fig, ax = plt.subplots()
-ax.plot(range(1, 51), scores_test.values(), label= "Genauigkeit des Testdatensatzes")
-ax.plot(range(1, 51), scores_train.values(), label= "Genauigkeit des Trainingsdatensatzes")
+ax.plot(range(1, 51), scores_test.values(), label="Genauigkeit des Testdatensatzes")
+ax.plot(range(1, 51), scores_train.values(), label="Genauigkeit des Trainingsdatensatzes")
 ax.set_title('Genauigkeit für verschiedene Werte von k')
 ax.set_xlabel('Anzahl der Nachbarn (k)')
 ax.set_ylabel('Genauigkeit')
@@ -68,9 +71,8 @@ plt.legend()
 ax.grid(True)
 
 # Save the plot without PCA
-plt.savefig("output/kmeansscoreplot.png")
+plt.savefig("../output/kmeansscoreplot.png")
 plt.show()
-
 
 # Define a range of PCA components to test
 pca_components_range = range(1, 7)  # only 6 smaples = only 6 max components
@@ -121,13 +123,10 @@ if pca_option:
 # Adjust layout to prevent overlap of titles and labels
 plt.tight_layout()
 
-plt.savefig("output/pcakmeans_plots.png")
+plt.savefig("../output/pcakmeans_plots.png")
 # Show the plots
 plt.show()
 
 # Print and analyze the results
 for (j, i), accuracy in results.items():
     print("PCA Komponenten: {}, k-NN Nachbarn: {}, Genauigkeit: {:.2f}".format(j, i, accuracy))
-
-
-

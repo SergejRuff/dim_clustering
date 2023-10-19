@@ -13,9 +13,9 @@ from perform_pca import perform_pca
 import numpy as np
 
 
-titanic_train = pd.read_csv("data/train.csv")
-titanic_test = pd.read_csv("data/test.csv")
-y_test = pd.read_csv("data/gender_submission.csv")
+titanic_train = pd.read_csv("../data/train.csv")
+titanic_test = pd.read_csv("../data/test.csv")
+y_test = pd.read_csv("../data/gender_submission.csv")
 y_test = y_test.drop("PassengerId", axis=1)
 # filtering train
 
@@ -53,7 +53,7 @@ silhouette_scores_kmeans = []
 k_range = range(2, 10)
 
 for k in k_range:
-    kmeans = KMeans(n_clusters=k)
+    kmeans = KMeans(n_clusters=k, n_init=10)
     cluster_labels = kmeans.fit_predict(train_x)
     silhouette_avg = silhouette_score(train_x, cluster_labels)
     silhouette_scores_kmeans.append(silhouette_avg)
@@ -89,7 +89,7 @@ plt.ylabel('Silhouette Score')
 plt.xticks(rotation=90)  # Rotate x-labels for readability
 
 plt.tight_layout()
-plt.savefig("output/silscore.png")
+plt.savefig("../output/silscore.png")
 plt.show()
 
 # task 2 b
@@ -136,6 +136,6 @@ plt.legend()
 
 plt.tight_layout()
 
-plt.savefig("output/kclustervsdbscan.png")
+plt.savefig("../output/kclustervsdbscan.png")
 
 plt.show()
