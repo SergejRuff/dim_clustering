@@ -75,6 +75,17 @@ ax.grid(True)
 plt.savefig("../output/kmeansscoreplot.png")
 plt.show()
 
+# Function to extract the score for comparison
+def get_score(item):
+    return item[1]
+
+# Find the PCA component with the highest test score
+best_pca_component, highest_test_score = max(scores_test.items(), key=get_score)
+
+# Print the best PCA component and its corresponding test score
+print("Best PCA Komponenten: {}, Highest Test Score: {:.2f}".format(best_pca_component, highest_test_score))
+
+
 # Define a range of PCA components to test
 pca_components_range = range(1, 7)  # only 6 smaples = only 6 max components
 
@@ -193,3 +204,15 @@ plt.show()
 # Print and analyze the results
 for (j, i), error_rate in results.items():
     print("PCA Komponenten: {}, k-NN Nachbarn: {}, Fehler Rate: {:.2f}".format(j, i, error_rate))
+
+# Function to extract error rate from a tuple
+def get_error_rate(result):
+    return result[1] # get second element of the tupel = error-rate
+
+# Find the combination with the lowest error rate
+best_components, min_error_rate = min(results.items(), key=get_error_rate)
+
+# Print the combination with the lowest error rate
+print("Lowest Fehler Rate: {:.2f}".format(min_error_rate))
+print("Best PCA Komponenten: {}, Best k-NN Nachbarn: {}".format(best_components[0], best_components[1]))
+
