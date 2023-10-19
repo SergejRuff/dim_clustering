@@ -11,9 +11,9 @@ from perform_pca import perform_pca
 
 pca_option = True
 
-titanic_train = pd.read_csv("../data/train.csv")
-titanic_test = pd.read_csv("../data/test.csv")
-y_test = pd.read_csv("../data/gender_submission.csv")
+titanic_train = pd.read_csv("data/train.csv")
+titanic_test = pd.read_csv("data/test.csv")
+y_test = pd.read_csv("data/gender_submission.csv")
 y_test = y_test.drop("PassengerId", axis=1)
 # filtering train
 
@@ -68,7 +68,7 @@ plt.legend()
 ax.grid(True)
 
 # Save the plot without PCA
-plt.savefig("../output/kmeansscoreplot.png")
+plt.savefig("output/kmeansscoreplot.png")
 plt.show()
 
 
@@ -121,7 +121,7 @@ if pca_option:
 # Adjust layout to prevent overlap of titles and labels
 plt.tight_layout()
 
-plt.savefig("../output/pcakmeans_plots.png")
+plt.savefig("output/pcakmeans_plots.png")
 # Show the plots
 plt.show()
 
