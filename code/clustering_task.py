@@ -9,6 +9,7 @@ from sklearn.neighbors import KNeighborsClassifier
 import matplotlib.pyplot as plt
 from perform_pca import perform_pca
 import os
+import numpy as np
 
 print(os.getcwd())
 
@@ -130,3 +131,65 @@ plt.show()
 # Print and analyze the results
 for (j, i), accuracy in results.items():
     print("PCA Komponenten: {}, k-NN Nachbarn: {}, Genauigkeit: {:.2f}".format(j, i, accuracy))
+
+
+# Store the results in a dictionary
+results = {}
+
+# Define the number of rows and columns for the subplot matrix
+n_rows = 3
+n_cols = 2
+
+# Create a figure and axis objects for the subplot matrix
+fig, axes = plt.subplots(n_rows, n_cols, figsize=(12, 12))
+
+# Initialize a counter for the subplot
+subplot_counter = 0
+error_rate = []
+
+if pca_option:
+    for j in pca_components_range:
+        if j <= min(train_x.shape[0], train_x.shape[1]):
+            # Create a copy of the original train_x and titanic_test
+            train_x_pca = train_x.copy()
+            titanic_test_pca = titanic_test.copy()
+
+            # Apply PCA with 'j' components to both the training and test data
+            train_x_pca = perform_pca(train_x_pca, j)
+            titanic_test_pca = perform_pca(titanic_test_pca, j)
+
+            # Make sure train_y remains unchanged
+            # Go through 50 k-NN iterations for the PCA-transformed data
+            for i in range(1, 51):
+                knn_clf = KNeighborsClassifier(n_neighbors=i)
+                knn_clf.fit(train_x_pca, train_y)
+                # Convert y_test DataFrame to a NumPy array
+                y_test_array = y_test.values.flatten()  # Flattening to ensure it's a 1D array
+
+                y_pred = knn_clf.predict(titanic_test_pca)
+
+                # Now, you can calculate the error rate without dimension mismatch
+                error_rate.append(np.mean(y_pred != y_test_array))  # Calculate error rate
+                results[(j, i)] = error_rate[-1]
+
+            # Plot the PCA components
+            row = subplot_counter // n_cols
+            col = subplot_counter % n_cols
+            axes[row, col].plot(range(1, 51), [results[(j, i)] for i in range(1, 51)], marker='o')
+            axes[row, col].set_title(f"PCA Komponente: {j} - Error Rate")
+            axes[row, col].set_xlabel("Anzahl der Nachbarn (k)")
+            axes[row, col].set_ylabel("Fehler Rate")
+
+            # Increment the subplot counter
+            subplot_counter += 1
+
+# Adjust layout to prevent overlap of titles and labels
+plt.tight_layout()
+
+plt.savefig("../output/pcakmeans_error_plots.png")
+# Show the plots
+plt.show()
+
+# Print and analyze the results
+for (j, i), error_rate in results.items():
+    print("PCA Komponenten: {}, k-NN Nachbarn: {}, Fehler Rate: {:.2f}".format(j, i, error_rate))
