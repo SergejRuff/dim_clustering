@@ -56,3 +56,10 @@ lesson 5: If you have 6 features, you can perform Principal Component Analysis (
 
 lesson 6: The cluster labels in DBScan can be both positive integers (representing normal clusters) and -1 (representing noise or outliers).
 The cluster label -1 is assigned to data points that are not part of any specific cluster and are considered as noise or outliers.
+
+lesson 7: relativ Path in Vs code vs jupyter.
+Relative path between the two is diffrent.
+VS code: titanic_train = pd.read_csv("data/train.csv")
+jupyter: titanic_train = pd.read_csv("../data/train.csv") - jupyter behaves like pycharm.
+Problem when sending code into the interactive window, since imports won´t work anymore.
+Solution: use the full pathway if you want to use the interactive window.
