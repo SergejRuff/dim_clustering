@@ -1,6 +1,22 @@
 Was ist der Unterschied zwischen
 scale, transform und fit_transform in Python?
 
+Muss man die Werte für kNN und PCA immer normalisieren (z-Score)?
+Oder machen es die Funktionen in sklearn selbst?
+
+> sklearn nutzt eucledian Distance als Standard für kNN?
+Muss man die Daten also standardisieren?
+> Welche Distanzmatrix ist besser geeignet für hoch dimensionale Daten
+> Habe gehört, dass ED nicht gut geeignet ist für Hoch Dimensionale Daten.
+wie viele Dimensionen sollte man maximal in ED nutzen?
+
+Wann Manhattan, ED, chebyshev,seuclidean oder mahalanobis nutzen?
+Was sind ihre Vor und Nachteile?
+
+Wozu dient brute force, auto und KDTree?
+
+Wieso werden ungerade K_Werte genutzt?
+
 
 DBSCAN erkennt mehr Cluster - 1 mehr
 Er kann besser Ausreißer als nicht Clusterzugehörige erkennen.
