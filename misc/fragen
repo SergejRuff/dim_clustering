@@ -17,6 +17,8 @@ Wozu dient brute force, auto und KDTree?
 
 Wieso werden ungerade K_Werte genutzt?
 
+Wie kommt es zur Glättung bei der Errorrate?
+
 
 DBSCAN erkennt mehr Cluster - 1 mehr
 Er kann besser Ausreißer als nicht Clusterzugehörige erkennen.
